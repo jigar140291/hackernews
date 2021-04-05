@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { DbService } from './db.service';
 
 interface IUser {
-  email: string;
-  password: string;
+  username: string;
 }
 
 @Injectable({
@@ -16,7 +15,7 @@ export class UserService {
 
   register(user: IUser){
     return new Promise((resolve, reject) => {
-      let store = this.getStore('users');
+      let store = this.dbService.getStore('users');
       let req = store.add(user);
       req.onerror = (e:any) => reject(e.target.error)
       req.onsuccess = (e:any) => resolve(e.target.result)
@@ -25,8 +24,8 @@ export class UserService {
 
   login(user: IUser){
     return new Promise((resolve, reject) => {
-      let store = this.getStore('users');
-      let req = store.get(user.email);
+      let store = this.dbService.getStore('users');
+      let req = store.get(user.username);
 
       req.onerror = (e:any) => reject(e.target.error)
       req.onsuccess = (e:any) => {
@@ -36,10 +35,5 @@ export class UserService {
         else resolve(val)
       }
     });
-  }
-
-  getStore(storeName: string){
-    let dataSource = this.dbService.db.transaction(storeName, 'readwrite');
-    return dataSource.objectStore(storeName);
   }
 }

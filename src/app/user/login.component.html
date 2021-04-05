@@ -1,8 +1,10 @@
 <form #userForm="ngForm" (ngSubmit)="isLoginPage ? loginUser(userForm) : registerUser(userForm)">
-    <div><h1>{{isLoginPage ? 'Login' : 'Register'}} Form</h1></div>
     <div>
-        <label for="email">Email</label>
-        <input type="text" name="email" id="email" ngModel required>
+        <h1>{{isLoginPage ? 'Login' : 'Register'}} Form</h1>
+    </div>
+    <div>
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" ngModel required>
     </div>
     <div>
         <label for="password">Password</label>
@@ -11,6 +13,4 @@
 
     <button type="submit" [disabled]="!userForm.form.valid">{{isLoginPage ? 'Login' : 'Register'}}</button>
     <a class="register-link" *ngIf="isLoginPage" routerLink='/register'>Register</a>
-  </form>
-
-  
+</form>

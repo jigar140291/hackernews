@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { INews, IPageination, IStory } from './news.interface';
 import * as moment from 'moment';
+import { DbService } from '../shared/db.service';
 
 @Injectable()
 export class NewsService {
@@ -14,7 +15,7 @@ export class NewsService {
   private limit: number = 25;
   private prevStoryType: string = "";
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private dbService: DbService) { }
 
   private getStories = (type: IStory["type"]) => this.httpClient.get(`${this.apiUrl}/${type}stories.json`)
 
@@ -66,5 +67,14 @@ export class NewsService {
     let pages = [];
     for (let i = 1; i <= pageCount; i++) pages.push(i);
     return pages;
+  }
+
+  public postStory(story){
+    return new Promise((resolve, reject) => {
+      let store = this.dbService.getStore('stories');
+      let req = store.add(story);
+      req.onerror = (e:any) => reject(e.target.error)
+      req.onsuccess = (e:any) => resolve(e.target.result)
+    });
   }
 }

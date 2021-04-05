@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NewsComponent } from './news/news.component';
 import { LoginComponent } from './user/login.component';
+import { PostNewsComponent } from './news/post-news/post-news.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/new-stories', pathMatch: 'full' },
@@ -10,7 +11,8 @@ const routes: Routes = [
   { path: 'top-stories', component: NewsComponent},
   { path: 'best-stories', component: NewsComponent},
   { path: 'login', component: LoginComponent},
-  { path: 'register', component: LoginComponent}
+  { path: 'register', component: LoginComponent},
+  { path: 'post-stories', component: PostNewsComponent}
 ]
 
 @NgModule({
