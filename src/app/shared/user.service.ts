@@ -10,7 +10,8 @@ interface IUser {
   providedIn: 'root'
 })
 export class UserService {
-
+  public userState:IUser=null;
+  
   constructor(private dbService: DbService) { }
 
   register(user: IUser){
@@ -29,6 +30,7 @@ export class UserService {
 
       req.onerror = (e:any) => reject(e.target.error)
       req.onsuccess = (e:any) => {
+        this.userState = e.target.result;
         let val = e.target.result;
         if(!val) reject({message: 'User Not Found !!'})
         else resolve(val)
