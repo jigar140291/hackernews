@@ -1,0 +1,13 @@
+<form #userForm="ngForm" (ngSubmit)="isLoginPage ? loginUser(userForm) : registerUser(userForm)">
+    <div>
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" ngModel>
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" ngModel>
+    </div>
+
+    <button type="submit">{{isLoginPage ? 'Login' : 'Register'}}</button> 
+  </form>
+  <a *ngIf="isLoginPage" routerLink='/register'>Register</a>
