@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { INews, IPageination, IStory } from './news.interface';
+import * as moment from 'moment';
 
 @Injectable()
 export class NewsService {
@@ -22,7 +23,7 @@ export class NewsService {
         story = {
           ...story,
           domain: story?.url ? this.calculateDomainUrl(story.url) : "",
-          timesAgo: this.calculateTimeFormat(story.time)
+          timesAgo: moment(story.time*1000).fromNow()
         }
         resolve(story);
       })
@@ -58,39 +59,6 @@ export class NewsService {
   private calculateDomainUrl(url: string): string {
     const newUrl = new URL(url);
     return newUrl.host.replace('www.', '');
-  }
-
-  private calculateTimeFormat(timeInUnix: number): string {
-    let timeDiff = <any>new Date - <any>new Date(timeInUnix * 1000);
-    let { days, hours, minutes, seconds } = this.parseDuration(timeDiff);
-
-    return days ? `${days} days` :
-      hours ? `${hours} hours` :
-        minutes ? `${minutes} minutes` :
-          `${seconds} seconds`;
-  }
-
-  private parseDuration(duration) {
-    let remain = duration
-
-    let days = Math.floor(remain / (1000 * 60 * 60 * 24))
-    remain = remain % (1000 * 60 * 60 * 24)
-
-    let hours = Math.floor(remain / (1000 * 60 * 60))
-    remain = remain % (1000 * 60 * 60)
-
-    let minutes = Math.floor(remain / (1000 * 60))
-    remain = remain % (1000 * 60)
-
-    let seconds = Math.floor(remain / (1000))
-    remain = remain % (1000)
-
-    return {
-      days,
-      hours,
-      minutes,
-      seconds
-    };
   }
 
   private getPages(pageCount: number): Array<number> {
