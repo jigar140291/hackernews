@@ -1,18 +1,4 @@
 form {
-    width: 20%;
-    transform: translate(-50%, 0);
-    position: relative;
-    left: 50%;
-    padding: 15px;
-    margin: 15px;
-    border: 1px solid #ccc;
-
-    & > div {
-        margin: 10px 0px;
-        label {
-            display: block;
-        }
-    }
     a.register-link {
         position: absolute;
         right: 5px;
