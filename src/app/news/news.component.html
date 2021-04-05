@@ -14,7 +14,7 @@
         <td>
             <div class="news-data">
                 <div>
-                    <a href="{{story.url}}">{{story.title}}</a>
+                    <a href="{{story.url}}" [innerHTML]="story.title"></a>
                     <a href="from?site={{story.domain}}">({{story.domain}})</a>
                 </div>
                 <div class="metadata">
