@@ -1,19 +1,31 @@
-<table>
+<div class="pagination-control">
+    <span>Showing {{newsService.skip+1}} to {{newsService.top}} of {{newsService?.stories?.length}}</span>
+    <div>
+        <label for="pages">Choose a page:</label>
+        <select name="pages" (change)="loadNews($event.target.value)">
+            <option *ngFor="let page of newsService.pages" value="{{page}}">{{page}}</option>
+        </select>
+    </div>
+</div>
+
+<table *ngIf="!isLoading; else loader">
     <tr *ngFor="let story of news; let index=index">
-        <td>{{index+1}}</td>
-        <td>Vote</td>
+        <td><b>{{newsService.skip+index+1}}.</b></td>
         <td>
             <div class="news-data">
                 <div>
-                    <a href="">{{story.title}}</a>
-                    <a>()</a>
+                    <a href="{{story.url}}">{{story.title}}</a>
+                    <a href="from?site={{story.domain}}">({{story.domain}})</a>
                 </div>
-                <div>
-                    <span>{{story.score}} points by {{story.by}} 54 min ago</span>
+                <div class="metadata">
+                    <span><b>{{story.score}}</b> points by <b>{{story.by}}</b> {{story.timesAgo}} ago</span>
                     <span>hide</span>
-                    <span>{{story.descendants}} comments</span>
+                    <span><b>{{story.descendants}}</b> comments</span>
                 </div>
             </div>
         </td>
     </tr>
 </table>
+<ng-template #loader>
+    Loading..
+</ng-template>

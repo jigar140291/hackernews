@@ -5,19 +5,23 @@ import { INews } from './news.interface';
 @Component({
   selector: 'news-list',
   templateUrl: './news.component.html',
-  styleUrls: ['./news.component.css']
+  styleUrls: ['./news.component.scss']
 })
 export class NewsComponent {
-  
+  public isLoading: boolean = false;
   public news: Array<INews> = [];
 
-  constructor(private newsService: NewsService) { 
+  constructor(public newsService: NewsService) { 
     this.loadNews(1);
   }
 
-  loadNews(pageNumber: number){
+  public loadNews(pageNumber: number){
+    this.isLoading = true;
     this.newsService.getNewsData(pageNumber, "new")
-    .then(res => this.news = res)
+    .then(res => {
+      this.isLoading = false;
+      this.news = res;
+    })
     .catch(err => {
       this.news = [];
       console.log(`Error Occured while fetching data: ${err}`);
