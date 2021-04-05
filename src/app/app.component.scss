@@ -13,12 +13,13 @@ header {
     display: flex;
 
     li {
-      &:not(:last-child):after {
-        content: "|";
-        padding: 0px 10px;
-      }
+      cursor: pointer;
+      padding: 0px 10px;
       &.active {
         font-weight: bold;
+      }
+      &:hover{
+        color: #000;
       }
     }
   }
