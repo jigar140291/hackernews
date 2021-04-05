@@ -3,6 +3,7 @@ import { DbService } from './db.service';
 
 interface IUser {
   username: string;
+  password: string;
 }
 
 @Injectable({
@@ -32,6 +33,7 @@ export class UserService {
         this.userState = e.target.result;
         let val = e.target.result;
         if(!val) reject({message: 'User Not Found !!'})
+        else if(val.username != user.username || val.password != user.password) reject({message: 'Invalid credentials !!'})
         else resolve(val)
       }
     });
