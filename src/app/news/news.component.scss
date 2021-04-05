@@ -1,0 +1,53 @@
+:host {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    table {
+        width: 100%;
+        tr {
+            display: block;
+            width: 100%;
+            margin: 10px 0px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+
+            td {
+                padding: 5px 10px;
+                font-size: 13px;
+                color: #888888;
+                a {
+                    color: #00c4ff;
+                    list-style: none;
+                    text-decoration: none;
+                    &:hover {
+                        color: #40dcff;
+                    }
+                    &:first-child {
+                        margin: 0 5px 0px 0px;
+                    }
+                }
+
+                .metadata {
+                    margin-top: 5px;
+                    color: #9e9e9e;
+                    font-size: 11px;
+                    span {
+                        &:not(:last-child):after {
+                            content: "|";
+                            padding: 0px 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .pagination-control {
+        display: flex;
+        justify-content: space-between;
+
+        select{
+            cursor: pointer;
+        }
+    }
+}
