@@ -1,0 +1,25 @@
+* {
+  font-family: Verdana, Geneva, sans-serif;
+  box-sizing: border-box;
+  font-size: 13px;
+}
+
+header {
+  background: #ff6600;
+  padding: 15px;
+  color: #fff;
+
+  ul {
+    display: flex;
+
+    li {
+      &:not(:last-child):after {
+        content: "|";
+        padding: 0px 10px;
+      }
+      &.active {
+        font-weight: bold;
+      }
+    }
+  }
+}
