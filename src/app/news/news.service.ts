@@ -12,6 +12,7 @@ export class NewsService {
   public top: number = 0;
   public skip: number = 0;
   private limit: number = 25;
+  private prevStoryType: string = "";
 
   constructor(private httpClient: HttpClient) { }
 
@@ -31,7 +32,7 @@ export class NewsService {
   }
 
   public getNewsData = async (pageNumber: number, type: IStory["type"]): Promise<Array<INews>> => {
-    if (!this.stories.length) {
+    if (!this.stories.length || this.prevStoryType != type) {
       this.stories = <Array<number>>await this.getStories(type).pipe().toPromise();
       let pageCount = Math.ceil(this.stories.length / this.limit);
       this.pages = this.getPages(pageCount);

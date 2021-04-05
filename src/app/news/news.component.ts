@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NewsService } from './news.service';
-import { INews } from './news.interface';
+import { INews, IStory } from './news.interface';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'news-list',
@@ -10,14 +11,19 @@ import { INews } from './news.interface';
 export class NewsComponent {
   public isLoading: boolean = false;
   public news: Array<INews> = [];
-
-  constructor(public newsService: NewsService) { 
-    this.loadNews(1);
+  public storyMapping = {
+    "new-stories":"new",
+    "top-stories":"top",
+    "best-stories":"best"
+  }
+  constructor(public newsService: NewsService, private activeRoute: ActivatedRoute) {
+    let storyType = this.storyMapping[this.activeRoute.snapshot.url.join('')];
+    this.loadNews(1, storyType);
   }
 
-  public loadNews(pageNumber: number){
+  public loadNews(pageNumber: number, storyType: IStory["type"]){
     this.isLoading = true;
-    this.newsService.getNewsData(pageNumber, "new")
+    this.newsService.getNewsData(pageNumber, storyType)
     .then(res => {
       this.isLoading = false;
       this.news = res;

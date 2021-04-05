@@ -1,11 +1,12 @@
 <header>
     <ul>
         <li routerLinkActive="active" [routerLink]="['/new-stories']">New</li>
-        <li>Top</li>
-        <li>Best</li>
-        <li>Add New Article</li>
-        <li class="login" routerLinkActive="active" [routerLink]="['/login']">
-            <span>Login</span>
+        <li routerLinkActive="active" [routerLink]="['/top-stories']">Top</li>
+        <li routerLinkActive="active" [routerLink]="['/best-stories']">Best</li>
+        <li *ngIf="userService?.userState?.email">Add New Article</li>
+        <li class="login" routerLinkActive="active">
+            <span *ngIf="!userService.userState" [routerLink]="['/login']">Login</span>
+            <span *ngIf="userService?.userState?.email">Logged In as {{userService?.userState?.email}}</span>
         </li>
     </ul>
 </header>
