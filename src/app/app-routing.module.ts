@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { NewsComponent } from './news/news.component';
 import { LoginComponent } from './user/login.component';
 import { PostNewsComponent } from './news/post-news/post-news.component';
+import { LoginActivateService } from './shared/login-activate.service';
 
 const routes: Routes = [
   { path: '', redirectTo: '/new-stories', pathMatch: 'full' },
@@ -12,7 +13,7 @@ const routes: Routes = [
   { path: 'best-stories', component: NewsComponent},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: LoginComponent},
-  { path: 'post-stories', component: PostNewsComponent}
+  { path: 'post-stories', component: PostNewsComponent, canActivate:[LoginActivateService]}
 ]
 
 @NgModule({

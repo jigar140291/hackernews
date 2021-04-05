@@ -3,10 +3,10 @@
         <li routerLinkActive="active" [routerLink]="['/new-stories']">New</li>
         <li routerLinkActive="active" [routerLink]="['/top-stories']">Top</li>
         <li routerLinkActive="active" [routerLink]="['/best-stories']">Best</li>
-        <li *ngIf="userService?.userState?.email">Add New Article</li>
+        <li routerLinkActive="active" [routerLink]="['/post-stories']" *ngIf="userService?.userState?.username">Add New Article</li>
         <li class="login" routerLinkActive="active">
             <span *ngIf="!userService.userState" [routerLink]="['/login']">Login</span>
-            <span *ngIf="userService?.userState?.email">Logged In as {{userService?.userState?.email}}</span>
+            <span *ngIf="userService?.userState?.username">Welcome {{userService?.userState?.username}}</span>
         </li>
     </ul>
 </header>
