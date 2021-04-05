@@ -1,8 +1,8 @@
 <div class="pagination-control">
-    <span>Showing {{newsService.skip+1}} to {{newsService.top}} of {{newsService?.stories?.length}}</span>
+    <span>Showing <b>{{newsService.skip+1}}</b> to <b>{{newsService.top}}</b> of <b>{{newsService?.stories?.length}}</b> {{storyType}} Stories</span>
     <div>
         <label for="pages">Choose a page:</label>
-        <select name="pages" (change)="loadNews($event.target.value)">
+        <select name="pages" (change)="loadNews($event.target.value, storyType)">
             <option *ngFor="let page of newsService.pages" value="{{page}}">{{page}}</option>
         </select>
     </div>
