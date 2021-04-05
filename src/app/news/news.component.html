@@ -18,9 +18,11 @@
                     <a href="from?site={{story.domain}}">({{story.domain}})</a>
                 </div>
                 <div class="metadata">
-                    <span><b>{{story.score}}</b> points by <b>{{story.by}}</b> {{story.timesAgo}}</span>
-                    <span>hide</span>
-                    <span><b>{{story.descendants}}</b> comments</span>
+                    <span>
+                        <ng-template [ngIf]="story.type != 'job'"><b>{{story.score}}</b> points by <b>{{story.by}}</b></ng-template>{{story.timesAgo}}
+                    </span>
+                    <span *ngIf="story.type != 'job'">hide</span>
+                    <span *ngIf="story.type != 'job'"><b>{{story.descendants}}</b> comments</span>
                 </div>
             </div>
         </td>
