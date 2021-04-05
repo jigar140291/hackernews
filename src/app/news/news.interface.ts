@@ -5,14 +5,16 @@ export interface INews {
     deleted: boolean;
     type: "job" | "story" | "comment" | "poll" | "pollopt";
     title: string;
-    time: string;
+    time: number;
     text: string;
     url: string;
     scpre: number;
     descendants: number;
     parents: Array<number>;
     kids: Array<number>;
-    parts: Array<number>
+    parts: Array<number>;
+    domain: string;
+    timesAgo: string;
 }
 
 export interface IPageination {
