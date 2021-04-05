@@ -14,15 +14,15 @@
         <td>
             <div class="news-data">
                 <div>
-                    <a href="{{story.url}}"  [innerHTML]="story.title"></a>
+                    <a href="{{story.url}}" [innerHTML]="story.title"></a>
                     <a href="from?site={{story.domain}}">({{story.domain}})</a>
                 </div>
                 <div class="metadata">
                     <span>
-                        <ng-template [ngIf]="story.type != 'job'"><b>{{story.score}}</b> points by <b>{{story.by}}</b></ng-template>{{story.timesAgo}}
+                        <ng-template [ngIf]="story.type == 'story'"><b>{{story.score}}</b> points by <b>{{story.by}}</b></ng-template>{{story.timesAgo}}
                     </span>
-                    <span *ngIf="story.type != 'job'">hide</span>
-                    <span *ngIf="story.type != 'job'"><b>{{story.descendants}}</b> comments</span>
+                    <span *ngIf="story.type == 'story'">hide</span>
+                    <span *ngIf="story.type == 'story'"><b>{{story.descendants}}</b> comments</span>
                 </div>
             </div>
         </td>
