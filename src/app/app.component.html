@@ -1,9 +1,10 @@
 <header>
     <ul>
-        <li>New</li>
+        <li routerLinkActive="active" [routerLink]="['/new-stories']">New</li>
         <li>Top</li>
         <li>Best</li>
         <li>Add New Article</li>
+        <li routerLinkActive="active" [routerLink]="['/login']">Login</li>
     </ul>
 </header>
-<news-list></news-list>
+<router-outlet></router-outlet>
